@@ -1,0 +1,248 @@
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", system-ui;
+}
+
+body {
+  margin: 0;
+}
+
+/* ===== SCREEN ===== */
+.screen {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 1s ease;
+  position: relative;
+}
+
+/* ===== THEMES ===== */
+.default {
+  background: linear-gradient(120deg, #1d2671, #c33764);
+}
+
+.cold {
+  background: linear-gradient(120deg, #1f4037, #99f2c8);
+}
+
+.warm {
+  background: linear-gradient(120deg, #f7971e, #ffd200);
+}
+
+.hot {
+  background: linear-gradient(120deg, #cb2d3e, #ef473a);
+}
+
+/* ===== FLOATING ORBS ===== */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  animation: float 12s infinite alternate ease-in-out;
+}
+
+.orb1 {
+  width: 300px;
+  height: 300px;
+  background: #ffffff;
+  top: 10%;
+  left: 15%;
+}
+
+.orb2 {
+  width: 400px;
+  height: 400px;
+  background: #ffdd00;
+  bottom: 10%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+.orb3 {
+  width: 250px;
+  height: 250px;
+  background: #00eaff;
+  top: 60%;
+  left: 60%;
+  animation-delay: 6s;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-60px);
+  }
+}
+
+/* ===== GLASS CARD ===== */
+.glass {
+  z-index: 10;
+  width: 90%;
+  max-width: 420px;
+  padding: 40px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(18px);
+  color: white;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  animation: pop 0.8s ease;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.title {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+}
+
+/* ===== SEARCH ===== */
+.search {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+button {
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* ===== WEATHER INFO ===== */
+.info {
+  margin-top: 30px;
+}
+
+.temp {
+  font-size: 72px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  animation: fade 0.8s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== ERROR ===== */
+.error {
+  margin-top: 15px;
+  color: #ffd6d6;
+}
+
+/* ========================= */
+/* WEATHER PARTICLE SYSTEM  */
+/* ========================= */
+
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 🌧️ RAIN */
+.rain .particles::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.6) 0px,
+    rgba(255, 255, 255, 0.6) 2px,
+    transparent 2px,
+    transparent 20px
+  );
+  background-size: 2px 20px;
+  animation: rain 0.5s linear infinite;
+}
+
+@keyframes rain {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
+/* ❄️ SNOW */
+.snow .particles::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: snow 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes snow {
+  from {
+    background-position: 0 -100%;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
+/* ☀️ SUN / HEAT SHIMMER */
+.sun .glass {
+  animation: heat 3s ease-in-out infinite;
+}
+
+@keyframes heat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
