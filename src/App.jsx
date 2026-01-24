@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 
-const API_KEY = "a3529c0201424cf7947100849261001";
+const API_KEY = "df1dac20a6144f94b7151808262401";
 
 export default function App() {
   const [city, setCity] = useState("");
